@@ -27,8 +27,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'devise'
+gem "cancan"
 gem 'geonames_api'
 gem 'twitter'
+gem 'geokit'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -40,7 +42,7 @@ group :development, :test do
 end
 
 group :test do
-  #gem 'capybara'
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
