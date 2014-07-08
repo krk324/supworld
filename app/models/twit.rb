@@ -8,4 +8,5 @@ class Twit
       config.access_token_secret = ENV["ACCESS_SECRET"]
     end
   end
+
 end

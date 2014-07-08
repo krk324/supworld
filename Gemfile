@@ -30,7 +30,8 @@ gem 'devise'
 gem "cancan"
 gem 'geonames_api'
 gem 'twitter'
-gem 'geokit'
+gem 'geocoder'
+gem 'seed-fu'
 
 group :development, :test do
   gem 'factory_girl_rails'
