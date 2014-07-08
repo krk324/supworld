@@ -17,13 +17,7 @@ ActiveRecord::Schema.define(version: 20140708015119) do
   enable_extension "plpgsql"
 
   create_table "cities", force: true do |t|
-    t.string  "country"
-    t.string  "city"
-    t.string  "accentcity"
-    t.string  "region"
-    t.integer "population"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.string "city"
   end
 
   create_table "comments", force: true do |t|

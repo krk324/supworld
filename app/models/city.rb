@@ -1,4 +1,6 @@
 class City < ActiveRecord::Base
+  validates :city, presence: true,uniqueness: true #, with: /^[a-zA-Z]+$/
+
   has_many :comments, class_name: 'Comment' , dependent: :destroy
 
   has_many :users, through: :comments
