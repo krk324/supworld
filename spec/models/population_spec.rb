@@ -3,9 +3,9 @@ require_relative '../../app/models/population'
 describe Population do
   describe 'country_population' do
     it 'has city name' do
-      city = City.new(city: 'new york')
+      city = City.new(city: 'newyork')
       city.save!
-      expect(Population.country_population('new york')).to eq 310232863
+      expect(Population.country_population('New York')).to eq 310232863
     end
   end
 
@@ -13,7 +13,7 @@ describe Population do
     it 'has city_name' do
       city = City.new(city: 'tokyo')
       city.save!
-      expect(Population.time_zone('tokyo')).to eq Time.now.in_time_zone("Asia/Tokyo").time
+      expect(Population.time_zone(35.689487500,139.6917063)).to eq Time.now.in_time_zone("Asia/Tokyo").time
     end
   end
 

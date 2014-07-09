@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :comments, class_name: 'Comment' , dependent: :destroy
+  has_many :memos, class_name: 'Memo' , dependent: :destroy
 
-  has_many :users, through: :comments
+  has_many :users, through: :memos
 
   has_many :visits, class_name: 'Visit' , dependent: :destroy
 

@@ -1,6 +1,5 @@
 class CitiesController < ApplicationController
   before_action :create, only: [:index]
-  #before_action :authenticate_user!, only: [:new, :create]
 
   def index
     redirect_to city_path(City.where(city: @city.city)[0])

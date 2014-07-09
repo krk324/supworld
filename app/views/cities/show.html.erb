@@ -4,3 +4,13 @@
 <h2>Treinding twitter keywords</h2>
 <! -- <%=@trending_topics%> -->
 <%=raw(@images)%>
+
+<% if user_signed_in? && current_user.memos.where(city_id: @city.id).present? %>
+  <h2>Memo</h2>
+  <%@city.memos.where(user_id: current_user.id).each do |memo| %>
+    <li><%= memo.memo%></li>
+  <% end %>
+<h1><%= link_to 'Add Memo', new_city_memo_path(@city) %></h1>
+<%end%>
+
+<! -- send city_id to memo#new countroller. memo controleer will recreate @city object with set_city. -->
