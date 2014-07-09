@@ -24,16 +24,16 @@ ActiveRecord::Schema.define(version: 20140708015119) do
     t.string "country"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "memos", force: true do |t|
     t.integer  "user_id"
     t.integer  "city_id"
-    t.text     "comment",    null: false
+    t.text     "memo",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["city_id"], name: "index_comments_on_city_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+  add_index "memos", ["city_id"], name: "index_memos_on_city_id", using: :btree
+  add_index "memos", ["user_id"], name: "index_memos_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

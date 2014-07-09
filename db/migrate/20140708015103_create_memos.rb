@@ -1,9 +1,9 @@
-class CreateComments < ActiveRecord::Migration
+class CreateMemos < ActiveRecord::Migration
   def change
-    create_table :comments do |t|
+    create_table :memos do |t|
       t.belongs_to :user, index: true
       t.belongs_to :city, index: true
-      t.text :comment, null: false
+      t.text :memo, null: false
       t.timestamps
     end
   end

@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Memo < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 end
