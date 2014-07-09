@@ -1,7 +1,15 @@
 class City < ActiveRecord::Base
-  geocoded_by :city
-  after_validation :geocode, :if => :city_changed?
-  reverse_geocoded_by :latitude, :longitude, :address => :city
+  geocoded_by :city do |obj,results|
+    if geo = results.first
+      obj.longitude = geo.longitude
+      obj.latitude = geo.latitude
+      obj.city = geo.city || geo.state
+      obj.country_code = geo.country_code
+      obj.country = geo.country
+    end
+  end
+  before_validation :geocode, :if => :city_changed?
+  reverse_geocoded_by :latitude, :longitude => :address
 
   validates :city, presence: true,uniqueness: true #, with: /^[a-zA-Z]+$/
 

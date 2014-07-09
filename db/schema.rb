@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140708015119) do
     t.string "city"
     t.float  "longitude"
     t.float  "latitude"
+    t.string "country_code"
+    t.string "country"
   end
 
   create_table "comments", force: true do |t|

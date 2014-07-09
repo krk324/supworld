@@ -19,6 +19,7 @@ class Population
 
   def self.time_zone(city_name)
        # Find city by city name
+
     city = City.where(city: city_name)[0]
     # find country_code by latitude and longitude
     GeoNamesAPI::TimeZone.find(city.latitude,city.longitude).time

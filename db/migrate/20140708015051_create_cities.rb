@@ -4,6 +4,8 @@ class CreateCities < ActiveRecord::Migration
       t.string :city
       t.float  :longitude
       t.float  :latitude
+      t.string :country_code
+      t.string :country
     end
 
   end

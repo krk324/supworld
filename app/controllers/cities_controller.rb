@@ -3,12 +3,12 @@ class CitiesController < ApplicationController
   #before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    redirect_to city_path(City.where(city: params[:city])[0].id)
+    redirect_to city_path(City.where(city: @city.city)[0])
   end
 
   def create
     @city = City.new(search_params)
-    @city.save
+    @city.save #unless @city.city == City.where(city: @city.city)[0]
   end
 
   def show
