@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :cities, only: [:index, :show, :create] do
     resources :memos, only: [:new, :create]
+    resources :visits, only:[:create, :destroy]
   end
   root 'home#show'
   # The priority is based upon order of creation: first created -> highest priority.

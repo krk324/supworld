@@ -1,5 +1,5 @@
 class MemosController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_city
 
 
