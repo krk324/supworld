@@ -1,5 +1,4 @@
 class Twit
-
   def client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["CONSUMER_KEY"]
@@ -9,4 +8,13 @@ class Twit
     end
   end
 
+  def self.trending_topics(latitude,longitude)
+    client = Twit.new.client
+    woeid = client.trends_closest(lat: latitude, long: longitude)[0].id
+
+    # return top 10 trending topics of that country
+    client.trends(woeid).attrs[:trends].map {|obj| obj[:name]}
+    #trends(woeid).attrs[:locations][0][:name]
+    #return place's name
+  end
 end

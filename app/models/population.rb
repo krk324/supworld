@@ -4,24 +4,13 @@ class Population
   end
 
   def self.country_population(city_name)
-    # Find city by city name
-    city = City.where(city: city_name)[0]
-    # find country_code by latitude and longitude
-    country_code = GeoNamesAPI::TimeZone.find(city.latitude,city.longitude).country_code
-
     # return population of that city's country.
+    country_code = City.where(city: city_name)[0].country_code
     GeoNamesAPI::Country.find(country_code).population
   end
 
-  def self.full_address(city_name)
-
-  end
-
-  def self.time_zone(city_name)
-       # Find city by city name
-
-    city = City.where(city: city_name)[0]
+  def self.time_zone(latitude,longitude)
     # find country_code by latitude and longitude
-    GeoNamesAPI::TimeZone.find(city.latitude,city.longitude).time
+    GeoNamesAPI::TimeZone.find(latitude,longitude).time
   end
 end

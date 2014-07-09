@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
     if geo = results.first
       obj.longitude = geo.longitude
       obj.latitude = geo.latitude
-      obj.city = geo.city || geo.state
+      obj.city = geo.city || geo.state || geo.country
       obj.country_code = geo.country_code
       obj.country = geo.country
     end

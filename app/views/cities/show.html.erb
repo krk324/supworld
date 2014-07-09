@@ -1,2 +1,6 @@
-<h1>About ---<h1>
-<h2><%=@country_population.to_s%><h2>
+<h1>About <%=@city.city%><h1>
+<h2><%=@time_zone%></h2>
+<h2>Population of <%=@city.country%>: <%=@country_population.to_s%><h2>
+<h2>Treinding twitter keywords</h2>
+<! -- <%=@trending_topics%> -->
+<%=raw(@images)%>
