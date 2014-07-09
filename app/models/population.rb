@@ -3,30 +3,25 @@ class Population
     GeoNamesAPI::Country.all.map(&:population).reduce(0, :+)
   end
 
-  def self.country_population(search)
-    # Find coordinates of certain city.
-    coordinates = Geocoder.coordinates(search)
-    longitude = coordinates[0]
-    latitude = coordinates[1]
-
-    # return country code for that city
-    country_code = GeoNamesAPI::TimeZone.find(longitude,latitude).country_code
+  def self.country_population(city_name)
+    # Find city by city name
+    city = City.where(city: city_name)[0]
+    # find country_code by latitude and longitude
+    country_code = GeoNamesAPI::TimeZone.find(city.latitude,city.longitude).country_code
 
     # return population of that city's country.
     GeoNamesAPI::Country.find(country_code).population
   end
 
-  def self.full_address(search)
-    # Find coordinates of certain city.
-    Geocoder.search('NY')[0].data['formatted_address']
-    # return country code for that city
+  def self.full_address(city_name)
+
   end
 
-  def self.time_zone(search)
-    coordinates = Geocoder.coordinates(search)
-    longitude = coordinates[0]
-    latitude = coordinates[1]
+  def self.time_zone(city_name)
+       # Find city by city name
+    city = City.where(city: city_name)[0]
+    # find country_code by latitude and longitude
+    coutnry_time = GeoNamesAPI::TimeZone.find(city.latitude,city.longitude)
 
-    GeoNamesAPI::TimeZone.find(longitude,latitude).time
   end
 end
