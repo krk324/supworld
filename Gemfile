@@ -31,6 +31,7 @@ gem "cancan"
 gem 'geonames_api'
 gem 'twitter'
 gem 'geocoder'
+gem 'instagram'
 
 group :development, :test do
   gem 'factory_girl_rails'

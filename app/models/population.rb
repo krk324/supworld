@@ -21,7 +21,6 @@ class Population
        # Find city by city name
     city = City.where(city: city_name)[0]
     # find country_code by latitude and longitude
-    coutnry_time = GeoNamesAPI::TimeZone.find(city.latitude,city.longitude)
-
+    GeoNamesAPI::TimeZone.find(city.latitude,city.longitude).time
   end
 end

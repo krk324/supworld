@@ -5,10 +5,10 @@ feature 'User views city' do
   # same as it in rspec ruby
   scenario 'with all attributes' do
     visit root_path
-    fill_in 'Search', with: 'NY'
+    fill_in 'city', with: 'singapore'
     click_button 'Search city'
 
-    expect(page).to have_content GeoNamesAPI::Country.find('US').population
+    expect(page).to have_content GeoNamesAPI::Country.find('SG').population
 
 
   end
