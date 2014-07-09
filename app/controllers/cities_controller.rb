@@ -3,7 +3,7 @@ class CitiesController < ApplicationController
   #before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @country_population = Population.country_population(params[:city])
+    redirect_to city_path(City.where(city: params[:city])[0].id)
   end
 
   def create
@@ -12,6 +12,8 @@ class CitiesController < ApplicationController
   end
 
   def show
+    city_name = City.find(params[:id]).city
+    @country_population = Population.country_population(city_name)
   end
 
   def search_params
