@@ -1,13 +1,9 @@
 class CitiesController < ApplicationController
-  before_action :create, only: [:index]
-
-  def index
-    redirect_to city_path(City.where(city: @city.city)[0])
-  end
 
   def create
     @city = City.new(search_params)
     @city.save
+    redirect_to city_path(City.where(city: @city.city)[0])
   end
 
   def show
