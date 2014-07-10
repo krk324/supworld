@@ -3,12 +3,12 @@ class VisitsController < ApplicationController
   before_action :set_city
 
   def create
-    if current_user.visits.empty?
+    if current_user.visits.where(city_id: @city.id).empty?
       @visit = @city.visits.new
       @visit.user = current_user
       @visit.count = 1
     else
-      @visit = current_user.visits.first
+      @visit = current_user.visits.where(city_id: @city.id)[0]
       @visit.count = count_visit
     end
 
@@ -24,6 +24,6 @@ class VisitsController < ApplicationController
   end
 
   def count_visit
-    current_user.visits.first.count + 1
+    current_user.visits.where(city_id: @city.id)[0].count + 1
   end
 end
