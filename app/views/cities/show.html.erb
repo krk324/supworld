@@ -15,7 +15,17 @@
         <%=@country_population.to_s%></p>
       <p class="lead">
         <%=@time_zone%></p>
-      <br></div>
+        <p class="lead">
+        <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
+          <%= link_to 'Traveled', city_visits_path(@city), method: :post%>
+          : <%=current_user.visits.where(city_id: @city.id).first.count%> times. </p>
+        <% else %>
+          Have never traveled to <%=@city.country%> :
+          <%= link_to 'Traveled?', city_visits_path(@city), method: :post%>
+        <% end %>
+
+        <br>
+    </div>
 
   </div><!-- /row -->
 
@@ -42,19 +52,19 @@
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-info ">
-          <% if user_signed_in?%>
           <div class="panel-heading">
-            <h3>Memo</h3>
-            <h4>
-              <%= link_to 'Add Memo', new_city_memo_path(@city) %></h4>
+            <% if user_signed_in?%>
+              <h3>Memo</h3>
+              <h4>
+                <%= link_to 'Add Memo', new_city_memo_path(@city) %></h4>
           </div>
           <div class="panel-body">
-            <%@city.memos.where(user_id: current_user.id).each do |memo| %>
-            <li>
-              <%= memo.memo%>
-              |
-              <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%></li>
-            <%end%>
+              <%@city.memos.where(user_id: current_user.id).each do |memo| %>
+              <li>
+                <%= memo.memo%>
+                |
+                <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%></li>
+              <%end%>
             <%end%>
           </div>
         </div>
