@@ -1,15 +1,56 @@
-<h1>About <%=@city.city%><h1>
-<h2><%=@time_zone%></h2>
-<h2>Population of <%=@city.country%>: <%=@country_population.to_s%><h2>
-<h2>Treinding twitter keywords</h2>
-<! -- <%=@trending_topics%> -->
-<%=raw(@images)%>
+<div class="container-full">
 
-<% if user_signed_in?%>
-  <h2>Memo</h2>
-  <%@city.memos.where(user_id: current_user.id).each do |memo| %>
-    <li><%= memo.memo%>| <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%> </li>
-  <% end %>
-<h1><%= link_to 'Add Memo', new_city_memo_path(@city) %></h1>
-<h3><%= link_to 'Visit', city_visits_path(@city), method: :post%></h3>
-<%end%>
+      <div class="row">
+
+        <div class="col-lg-12 text-center v-center">
+
+          <h1><%=@city.city%></h1>
+          <br>
+          <p class="lead">Country: <%=@city.country%> </p>
+          <p class="lead">Population: <%=@country_population.to_s%></p>
+          <p class="lead"><%=@time_zone%></p>
+          <br>
+
+        </div>
+
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="col-lg-12 text-center v-center">
+          <h2><%=raw(@images)%></h2>
+        </div>
+      </div>
+
+<div class="container">
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading"><h3>Trending Twitter Keywords</h3></div>
+            <div class="panel-body">
+            <%=@trending_topics%>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-info">
+          <% if user_signed_in?%>
+            <div class="panel-heading"><h3>Memo</h3><h4><%= link_to 'Add Memo', new_city_memo_path(@city) %></h4>
+            </div>
+            <div class="panel-body">
+              <%@city.memos.where(user_id: current_user.id).each do |memo| %>
+                <li><%= memo.memo%> | <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%> </li>
+              <%end%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
