@@ -9,9 +9,9 @@ class City < ActiveRecord::Base
     end
   end
   before_validation :geocode, :if => :city_changed?
-  reverse_geocoded_by :latitude, :longitude => :address
+  #reverse_geocoded_by :latitude, :longitude => :address
 
-  validates :city, presence: true,uniqueness: true #, with: /^[a-zA-Z]+$/
+  validates :city, presence: true, uniqueness: true #, with: /^[a-zA-Z]+$/
 
   has_many :memos, class_name: 'Memo' , dependent: :destroy
 

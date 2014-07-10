@@ -19,6 +19,13 @@ class MemosController < ApplicationController
     end
   end
 
+  def destroy
+    @memo = Memo.find(params[:id])
+    @memo.destroy
+
+    redirect_to @city, notice: "You have deleted the memo"
+  end
+
   private
 
   def memo_params

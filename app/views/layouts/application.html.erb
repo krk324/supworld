@@ -26,7 +26,7 @@
 
 <%= yield %>
 
-<%= form_tag(cities_path, method: "get") do %>
+<%= form_tag(cities_path, method: "post") do %>
   <%= label_tag(:search, "Search for:") %>
   <%= text_field_tag(:city, params[:city]) %>
   <%= submit_tag("Search city") %>

@@ -8,12 +8,8 @@
 <% if user_signed_in?%>
   <h2>Memo</h2>
   <%@city.memos.where(user_id: current_user.id).each do |memo| %>
-    <li><%= memo.memo%></li>
+    <li><%= memo.memo%>| <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%> </li>
   <% end %>
 <h1><%= link_to 'Add Memo', new_city_memo_path(@city) %></h1>
 <h3><%= link_to 'Visit', city_visits_path(@city), method: :post%></h3>
 <%end%>
-
-
-
-<! -- send city_id to memo#new countroller. memo controleer will recreate @city object with set_city. -->
