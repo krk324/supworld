@@ -14,7 +14,7 @@ class MemosController < ApplicationController
     if @memo.save
       redirect_to @city
     else
-      flash.now[:alert] = @comment.errors.full_messages.join(', ')
+      flash.now[:alert] = @memo.errors.full_messages.join(', ')
       render :new
     end
   end
