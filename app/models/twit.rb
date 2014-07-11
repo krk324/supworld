@@ -14,8 +14,5 @@ class Twit
 
     #return top 10 trending topics of that country
     client.trends(woeid).attrs[:trends].map {|obj| obj[:name]}
-
-    #trends(woeid).attrs[:locations][0][:name]
-    #return place's name
   end
 end

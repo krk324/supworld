@@ -1,17 +1,23 @@
 class CitiesController < ApplicationController
 
   def create
-    city_name = Geocoder.search(search_params[:city])[0].city || Geocoder.search(search_params[:city])[0].state || Geocoder.search(search_params[:city])[0].country
-    @city = City.new(city: city_name)
-    # Before saving the object geocoder populate the database with real cityname.
-    # Geocoder runs after validation.
-    if City.where(city: city_name).empty? || @city.id.nil?
-      @city.save
+    if params[:city].present?
+      # Geocoder corret misspelled city name automatically.
+      city_name = Geocoder.search(search_params[:city])[0].city || Geocoder.search(search_params[:city])[0].state || Geocoder.search(search_params[:city])[0].country
+      @city = City.new(city: city_name)
+
+      if City.where(city: city_name).empty? || @city.id.nil?
+        @city.save
+      else
+        flash.now[:notice]=@city.errors.full_messages.join(', ')
+        redirect_to :back
+      end
+      redirect_to city_path(City.where(city: @city.city)[0])
+
     else
-      flash.now[:notice]=@city.errors.full_messages.join(', ')
-      redirect_to :back
+      flash[:alert] = "Enter a city name"
+      redirect_to root_path
     end
-    redirect_to city_path(City.where(city: @city.city)[0])
 
   end
 
