@@ -8,6 +8,7 @@ class CreateCities < ActiveRecord::Migration
       t.string :country
       t.string :population
       t.string :tweets, array:true, default: []
+      t.timestamps
     end
 
   end

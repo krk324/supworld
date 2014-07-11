@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(version: 20140708015119) do
   enable_extension "plpgsql"
 
   create_table "cities", force: true do |t|
-    t.string "city"
-    t.float  "longitude"
-    t.float  "latitude"
-    t.string "country_code"
-    t.string "country"
-    t.string "population"
-    t.string "tweets",       default: [], array: true
+    t.string   "city"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.string   "country_code"
+    t.string   "country"
+    t.string   "population"
+    t.string   "tweets",       default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "memos", force: true do |t|
