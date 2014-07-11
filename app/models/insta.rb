@@ -1,13 +1,11 @@
 class Insta
 
-  Insta.new.configure
 
-  def configure
-    Instagram.configure do |config|
-      config.client_id = ENV["CLIENT_ID"]
-      config.client_secret = ENV["CLIENT_SECRET"]
-    end
+  Instagram.configure do |config|
+    config.client_id = ENV["CLIENT_ID"]
+    config.client_secret = ENV["CLIENT_SECRET"]
   end
+
 
   def self.images(latitude,longitude)
     html = "<h2>Recent Insagram Photo</h2>"
@@ -24,5 +22,7 @@ class Insta
     end
     html
   end
+
+
 
 end
