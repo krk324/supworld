@@ -11,7 +11,6 @@ class CitiesController < ApplicationController
       flash.now[:notice]=@city.errors.full_messages.join(', ')
       redirect_to :back
     end
-
     redirect_to city_path(City.where(city: @city.city)[0])
 
   end
