@@ -7,9 +7,6 @@ feature 'User views world' do
 
     visit root_path
 
-    expect(page).to have_content 'About World'
-    expect(page).to have_content GeoNamesAPI::Country.all.map(&:population).reduce(0, :+)
-
   end
 
 end

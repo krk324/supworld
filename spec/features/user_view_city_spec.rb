@@ -6,7 +6,7 @@ feature 'User views city' do
   scenario 'with all attributes' do
     visit root_path
     fill_in 'city', with: 'singapore'
-    click_button 'Search city'
+    click_button 'Search'
 
     expect(page).to have_content GeoNamesAPI::Country.find('SG').population
 

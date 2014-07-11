@@ -5,7 +5,7 @@ feature "User creates a player" do
   scenario 'successfully' do
     visit root_path
     fill_in 'city', with: 'singapore'
-    click_button 'Search city'
+    click_button 'Search'
     click_link 'Add Memo'
 
     fill_in 'Memo', with: 'Hello'
