@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140708015119) do
     t.float  "latitude"
     t.string "country_code"
     t.string "country"
+    t.string "population"
+    t.string "tweets",       default: [], array: true
   end
 
   create_table "memos", force: true do |t|
