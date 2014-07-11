@@ -1,5 +1,7 @@
 class Insta
 
+  Insta.new.configure
+
   def configure
     Instagram.configure do |config|
       config.client_id = ENV["CLIENT_ID"]
@@ -8,7 +10,6 @@ class Insta
   end
 
   def self.images(latitude,longitude)
-    configure
     html = "<h2>Recent Insagram Photo</h2>"
     for media_item in Instagram.client.media_search(latitude,longitude)
       html << "<img src='#{media_item.images.thumbnail.url}'>"
@@ -17,7 +18,6 @@ class Insta
   end
 
   def self.popular_images
-    configure
     html = "<h1>Trending Photos</h1>"
     for media_item in Instagram.client.media_popular
       html << "<img src='#{media_item.images.thumbnail.url}'>"
