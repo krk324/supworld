@@ -34,4 +34,13 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Instagram.configure do |config|
+    config.client_id = ENV["CLIENT_ID"]
+    config.client_secret = ENV["CLIENT_SECRET"]
+  end
+
+  # Set user name to GeoNamesAPI
+  GeoNamesAPI.username = ENV['USER_NAME']
+
 end
