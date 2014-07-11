@@ -19,11 +19,11 @@ class Flickr
 
   end
 
-  def self.get_flickr_images(tag)
+  def self.get_flickr_images(text)
     thumbnail_size = "m"
     original_size = "z"
 
-    images = flickr.photos.search(tags: tag, sort: "relevance", per_page: 20)
+    images = flickr.photos.search(text: text, sort: "relevance", per_page: 20)
 
     flickr_images = []
     images.each do |image|
@@ -41,7 +41,7 @@ class Flickr
   end
 
   def self.get_random_city_images(city_name)
-    tag_name = city_name + ' landscape'
+    tag_name = city_name + ' city landscape'
     image = Flickr.get_flickr_images(tag_name).sample
     image.original_url
   end
