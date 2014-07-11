@@ -40,9 +40,10 @@ class Flickr
     flickr_images
   end
 
-end
+  def self.get_random_city_images(city_name)
+    city_name << ' landscape'
+    image = Flickr.get_flickr_images(city_name).sample
+    image.original_url
+  end
 
-# get_flickr_images("mountain").each do |image|
-#   puts image.title
-#   puts image.link_url
-# end
+end
