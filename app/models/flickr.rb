@@ -2,11 +2,6 @@ require "flickraw"
 
 class Flickr
 
-  def self.configure
-    FlickRaw.api_key = ENV['FLICKR_ID']
-    FlickRaw.shared_secret = ENV["FLICKR_SECRET"]
-  end
-
   class FlickrImage
     attr_accessor :id, :title, :description, :link_url, :thumbnail_url, :original_url
 
@@ -22,7 +17,6 @@ class Flickr
   end
 
   def self.get_flickr_images(text)
-    Flickr.configure
     thumbnail_size = "m"
     original_size = "z"
 
