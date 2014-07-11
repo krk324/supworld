@@ -1,12 +1,5 @@
 class Insta
 
-
-  Instagram.configure do |config|
-    config.client_id = ENV["CLIENT_ID"]
-    config.client_secret = ENV["CLIENT_SECRET"]
-  end
-
-
   def self.images(latitude,longitude)
     html = "<h2>Recent Insagram Photo</h2>"
     for media_item in Instagram.client.media_search(latitude,longitude)
