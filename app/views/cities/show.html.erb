@@ -15,7 +15,7 @@
           <%=number_with_delimiter(@country_population, delimiter: ',')%></p>
         <p class="lead">
           <%=@time_zone%></p>
-          <p class="lead">
+        <p class="lead">
           <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
             <%= link_to 'Been here', city_visits_path(@city), method: :post%>
             : <%=current_user.visits.where(city_id: @city.id).first.count%> times. </p>

@@ -61,9 +61,14 @@ p {
   color:black;
 }
 
-.navbar-nav > li > a {
+@gray-light:   lighten(#000, 46.7%);
+@gray-darker:  lighten(#000, 13.5%);
 
+.navbar-default {
+    background-color: @gray-darker!important;
+    border-color: #E7E7E7 !important;
 }
+
 .navbar {
   margin-bottom: 0px !important;
 

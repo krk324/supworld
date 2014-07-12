@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
 
   def create
-    if params[:city].present?
+    if params[:city].present? && Geocoder.search(search_params[:city]).present?
       # Geocoder corret misspelled city name automatically.
       city_name = Geocoder.search(search_params[:city])[0].city || Geocoder.search(search_params[:city])[0].state || Geocoder.search(search_params[:city])[0].country
       @city = City.new(city: city_name)
