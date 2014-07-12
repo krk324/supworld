@@ -38,7 +38,7 @@ class Flickr
   end
 
   def self.get_random_city_images(city_name)
-    tag_name = city_name + ' city landscape'
+    tag_name = city_name + ' city view'
     image = Flickr.get_flickr_images(tag_name).sample
     image.original_url
   end

@@ -1,51 +1,48 @@
-<div class="container-full">
+<div class="container-full" >
+  <div class ="backgroundphoto" style="background: url(<%=Flickr.get_random_city_images(@city.city)%>); background-size: cover">
+    <div class="row" id = "heading">
 
-  <div class="row" style="background: url(<%=Flickr.get_random_city_images(@city.city)%>); background-size: cover">
+      <div class="col-lg-12 text-center v-center">
 
-    <div class="col-lg-12 text-center v-center" id ="cover-photo">
-
-      <h1>
-        <%=@city.city%></h1>
-      <br>
-      <p class="lead">
-        Country:
-        <%=@city.country%></p>
-      <p class="lead">
-        Population:
-        <%=@country_population.to_s%></p>
-      <p class="lead">
-        <%=@time_zone%></p>
-        <p class="lead">
-        <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
-          <%= link_to 'Traveled', city_visits_path(@city), method: :post%>
-          : <%=current_user.visits.where(city_id: @city.id).first.count%> times. </p>
-        <% else %>
-          Have never traveled to <%=@city.country%> :
-          <%= link_to 'Traveled?', city_visits_path(@city), method: :post%>
-        <% end %>
-
+        <h1>
+          <%=@city.city%></h1>
         <br>
-    </div>
+        <p class="lead">
+          Country:
+          <%=@city.country%></p>
+        <p class="lead">
+          Population:
+          <%=@country_population.to_s%></p>
+        <p class="lead">
+          <%=@time_zone%></p>
+          <p class="lead">
+          <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
+            <%= link_to 'Traveled', city_visits_path(@city), method: :post%>
+            : <%=current_user.visits.where(city_id: @city.id).first.count%> times. </p>
+          <% else %>
+            You've never traveled to <%=@city.city%> :
+            <%= link_to 'Have been here?', city_visits_path(@city), method: :post%>
+             <span class="glyphicon glyphicon-send"></span>
+          <% end %>
 
-  </div><!-- /row -->
+          <br>
+      </div>
 
-  <div class="row">
-    <div class="col-lg-12 text-center v-center">
-      <h2><%=raw(@images)%></h2>
+    </div><!-- /row -->
+
+    <div class="row">
+      <div class="col-md-12" id= "heading2">
+        <h2 id="twitter">Trending Twitter Keywords</h2>
+        <p id="twitter"><%=@trending_topics%></p>
+      </div>
     </div>
   </div>
 
   <div class="container">
     <hr>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3>Trending Twitter Keywords</h3>
-          </div>
-          <div class="panel-body"><%=@trending_topics%></div>
-        </div>
+   <div class="row">
+      <div class="col-lg-12 text-center v-center">
+        <h2><%=raw(@images)%></h2>
       </div>
     </div>
 

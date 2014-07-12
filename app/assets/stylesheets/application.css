@@ -10,6 +10,13 @@ h1 {
   color:#DDCCEE;
 }
 
+h2 {text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
 .lead {
   color:#DDCCEE;
 }
@@ -38,8 +45,20 @@ h1 {
   color: black;
 }
 
-#cover-photo{
-  background: rgba(0,0,0,0.4);
+#heading{
+  background: rgba(60,23,10,0.7);
+}
+
+#heading2{
+  background: rgba(255,255,255,0.7);
+}
+
+#trending-pics{
+  background: rgba(255,255,253,1);
+}
+
+#twitter{
+  color:black;
 }
 
 .navbar-nav > li > a {
