@@ -1,28 +1,27 @@
-== README
+# SupWorld?
+City information search engine/ Travel management app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+The app was created for General Assembly Wed Development Immersive Program's Project 1(June 2014).
 
-Things you may want to cover:
+The project was developed in one week.
 
-* Ruby version
+##Features
+- Guest user can search by city name and see statistic about that city, time, trending twitter topics, and pictures taken around that region.
+- User logged-in can keep track of city they visited by clicking on the paper airplane icon and see list of cities visied on dropdown menu next to right side of logo.
+- Register user can leave a memo to the city they have visited.
 
-* System dependencies
+##Installation
+This app requires API key/secret from followings.
+1) Twitter
+2) GeoNames
+3) Insagram
+4) Flickr
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+To install:
+1) Fork and Clone
+2) Create .env file.
+3) Add .env to .gitignore file.
+4) Add API/secret to .env file.
 
 Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
