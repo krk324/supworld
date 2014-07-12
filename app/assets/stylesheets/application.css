@@ -61,17 +61,18 @@ p {
   color:black;
 }
 
-@gray-light:   lighten(#000, 46.7%);
-@gray-darker:  lighten(#000, 13.5%);
-
 .navbar-default {
-    background-color: @gray-darker!important;
+    background-color: @gray-darker !important;
     border-color: #E7E7E7 !important;
 }
 
 .navbar {
   margin-bottom: 0px !important;
 
+}
+
+.link-to{
+  color: black;
 }
 
 /*

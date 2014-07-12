@@ -18,7 +18,7 @@
         <p class="lead">
           <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
             <%= link_to 'Been here', city_visits_path(@city), method: :post%>
-            : <%=current_user.visits.where(city_id: @city.id).first.count%> times. </p>
+            : <%=current_user.visits.where(city_id: @city.id).first.count%> time(s). </p>
           <% else %>
             You've never traveled to <%=@city.city%> :
             <%= link_to 'Have been here?', city_visits_path(@city), method: :post%>
@@ -42,31 +42,38 @@
     <hr>
    <div class="row">
       <div class="col-lg-12 text-center v-center">
+        <h2>Instagram pictures taken at <%=@city.city%></h2>
         <h2><%=raw(@images)%></h2>
       </div>
     </div>
 
+    <% if user_signed_in?%>
+    <hr>
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-info ">
-          <div class="panel-heading">
-            <% if user_signed_in?%>
+        <div class="panel panel-default ">
+          <div class="panel-heading text-center">
               <h3>Memo</h3>
               <h4>
-                <%= link_to 'Add Memo', new_city_memo_path(@city) %></h4>
+                <%= link_to new_city_memo_path(@city),style: 'color:black;' do %>
+                 <i class="glyphicon glyphicon-plus"></i><i class="glyphicon glyphicon-list-alt"></i>
+                 <%end%>
           </div>
-          <div class="panel-body">
+          <div class="panel-body text-center">
               <%@city.memos.where(user_id: current_user.id).each do |memo| %>
               <li>
                 <%= memo.memo%>
                 |
-                <%= link_to 'Delete', city_memo_path(@city,memo), method: :delete%></li>
+                <%= link_to city_memo_path(@city,memo), method: :delete, style: 'color:black;' do%>
+                 <i class="glyphicon glyphicon-trash"></i></li>
+                <%end%>
               <%end%>
-            <%end%>
           </div>
         </div>
       </div>
     </div>
+    <%end%>
+
 
     <hr>
     <div class="row">

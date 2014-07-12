@@ -2,7 +2,7 @@ class Insta
 
   def self.images(latitude,longitude)
     client = Instagram.client(access_token: ENV['INSTA_TOKEN'])
-    html = "<h2>Recent Insagram Photos</h2>"
+    html = ""
     for media_item in client.media_search(latitude,longitude)
       html << "<img src='#{media_item.images.thumbnail.url}'>"
     end
