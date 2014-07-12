@@ -26,6 +26,7 @@
             <span class="glyphicon glyphicon-send"></span>
           <%end%>
             : <%=current_user.visits.where(city_id: @city.id).first.count%> time(s).
+              <%= link_to 'Uncount', city_visit_path(@city,current_user.visits.where(city_id: @city.id).first), method: :delete%>
         <% else %>
           You've never traveled to <%=@city.city%><br>
             Have been here? <%= link_to city_visits_path(@city), method: :post do%>

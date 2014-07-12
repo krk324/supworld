@@ -17,6 +17,14 @@ class VisitsController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    @visit = Visit.find(params[:id])
+    @visit.count = @visit.count - 1
+    @visit.save!
+
+    redirect_to @city, notice: "You've uncounted your visit."
+  end
+
   private
 
   def set_city
