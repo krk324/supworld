@@ -15,23 +15,28 @@
           <%=number_with_delimiter(@country_population, delimiter: ',')%></p>
         <p class="lead">
           <%=@time_zone%></p>
-        <p class="lead">
-          <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
-            <%= link_to 'Been here', city_visits_path(@city), method: :post%>
-            : <%=current_user.visits.where(city_id: @city.id).first.count%> time(s). </p>
-          <% else %>
-            You've never traveled to <%=@city.city%> :
-            <%= link_to 'Have been here?', city_visits_path(@city), method: :post%>
-             <span class="glyphicon glyphicon-send"></span>
-          <% end %>
-
-          <br>
       </div>
 
     </div><!-- /row -->
 
     <div class="row">
-      <div class="col-md-12" id= "heading2">
+     <div class="col-md-12" id= "heading2">
+        <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
+            Been here <%= link_to city_visits_path(@city), method: :post do%>
+            <span class="glyphicon glyphicon-send"></span>
+          <%end%>
+            : <%=current_user.visits.where(city_id: @city.id).first.count%> time(s).
+        <% else %>
+          You've never traveled to <%=@city.city%><br>
+            Have been here? <%= link_to city_visits_path(@city), method: :post do%>
+            <span class="glyphicon glyphicon-send"></span>
+          <%end%>
+        <% end %>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-md-12" id= "heading3">
         <h2 id="twitter">Trending Twitter Keywords</h2>
         <p id="twitter"><%=@trending_topics%></p>
       </div>

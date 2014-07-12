@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User creates a player" do
+feature "User creates a memo" do
 
   scenario 'successfully' do
     visit root_path
