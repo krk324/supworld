@@ -11,7 +11,7 @@ class City < ActiveRecord::Base
   before_validation :geocode, :if => :city_changed?
   #reverse_geocoded_by :latitude, :longitude => :address
 
-  validates :city, presence: true, uniqueness: true, format: { with: /\A^([a-zA-Z]+\s)*[a-zA-Z]+$\z/, message: "only allows letters" }
+  validates :city, presence: true, uniqueness: true#, format: { with: /\A^([a-zA-Z]+\s)*[a-zA-Z]+$\z/, message: "only allows letters" }
 
   has_many :memos, class_name: 'Memo' , dependent: :destroy
 

@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
       city_name = Geocoder.search(search_params[:city])[0].city || Geocoder.search(search_params[:city])[0].state || Geocoder.search(search_params[:city])[0].country
       @city = City.new(city: city_name)
 
-      if City.where(city: city_name).empty? || @city.id.nil?
+      if City.where(city: city_name).empty?
         @city.save
       else
         flash.now[:notice]=@city.errors.full_messages.join(', ')
