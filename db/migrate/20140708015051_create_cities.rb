@@ -7,7 +7,7 @@ class CreateCities < ActiveRecord::Migration
       t.string :country_code
       t.string :country
       t.string :population
-      t.string :tweets, array:true, default: []
+      t.string :wiki_url
       t.timestamps
     end
 

@@ -20,4 +20,9 @@ class City < ActiveRecord::Base
   has_many :visits, class_name: 'Visit' , dependent: :destroy
 
   has_many :users, through: :visits
+
+  has_many :tweets, class_name: 'Tweet' , dependent: :destroy
+
+  has_many :images, class_name: 'Image' , dependent: :destroy
+
 end

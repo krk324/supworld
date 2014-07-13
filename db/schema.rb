@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708015119) do
+ActiveRecord::Schema.define(version: 20140713144138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,19 @@ ActiveRecord::Schema.define(version: 20140708015119) do
     t.string   "country_code"
     t.string   "country"
     t.string   "population"
-    t.string   "tweets",       default: [], array: true
+    t.string   "wiki_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "images", force: true do |t|
+    t.integer  "city_id"
+    t.string   "image",      default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["city_id"], name: "index_images_on_city_id", using: :btree
 
   create_table "memos", force: true do |t|
     t.integer  "user_id"
@@ -38,6 +47,15 @@ ActiveRecord::Schema.define(version: 20140708015119) do
 
   add_index "memos", ["city_id"], name: "index_memos_on_city_id", using: :btree
   add_index "memos", ["user_id"], name: "index_memos_on_user_id", using: :btree
+
+  create_table "tweets", force: true do |t|
+    t.integer  "city_id"
+    t.string   "tweet",      default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tweets", ["city_id"], name: "index_tweets_on_city_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
