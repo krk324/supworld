@@ -8,7 +8,9 @@ feature 'User views city' do
     fill_in 'city', with: 'singapore'
     click_button 'Search'
 
-    expect(page).to have_content GeoNamesAPI::Country.find('SG').population
+    expect(page).to have_content 'Singapore'
+    expect(page).to have_content '4,701,069'
+    expect(page).to have_content 'Wikipedia'
 
 
   end

@@ -19,7 +19,6 @@ class CitiesController < ApplicationController
   end
 
   def show
-    # show_html only can get info with in this method.
     @city = City.find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
 
@@ -41,8 +40,7 @@ class CitiesController < ApplicationController
       @country_population = @city.population
     end
 
-    # Create new tweet object only if city_id doesnt exists.
-    # If exist get existing tweets from database.
+    # If exist get existing tweets from database. Else create new tweet object.
     # Store new tweets to the database if tweets were stored 30 minutes ago.
     # else display tweets in the database.
     tweets = @city.tweets.find_or_create_by(city_id: @city.id)

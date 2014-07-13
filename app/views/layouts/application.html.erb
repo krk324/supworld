@@ -30,7 +30,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cities Visited <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <% current_user.visits.each do |visit|%>
-                <li><%=link_to visit.city.city, visit.city%></li>
+                <li><%=link_to visit.city.city, visit.city if visit.count != 0%></li>
               <% end %>
             <% end %>
             </ul>
