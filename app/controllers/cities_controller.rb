@@ -7,10 +7,7 @@ class CitiesController < ApplicationController
       @city = City.new(city: city_name)
 
       if City.where(city: city_name).empty?
-        @city.save
-      else
-        flash.now[:notice]=@city.errors.full_messages.join(', ')
-        redirect_to :back
+        @city.save!
       end
       redirect_to city_path(City.where(city: @city.city)[0])
 
@@ -29,6 +26,7 @@ class CitiesController < ApplicationController
     # Store wiki url only if wiki_url column is blank.
     if @city.wiki_url.blank?
       @wiki_url = Population.wiki_url(@city.city)
+      @city.wiki_url = @wiki_url
       @city.save!
     else
       @wiki_url = @city.wiki_url
@@ -43,7 +41,8 @@ class CitiesController < ApplicationController
       @country_population = @city.population
     end
 
-    # Create new tweets object only if city_id exists
+    # Create new tweet object only if city_id doesnt exists.
+    # If exist get existing tweets from database.
     # Store new tweets to the database if tweets were stored 30 minutes ago.
     # else display tweets in the database.
     tweets = @city.tweets.find_or_create_by(city_id: @city.id)
