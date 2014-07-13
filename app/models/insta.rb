@@ -11,7 +11,7 @@ class Insta
 
   def self.popular_images
     client = Instagram.client(access_token: ENV['INSTA_TOKEN'])
-    html = "<h1>Trending Photos</h1>"
+    html = ""
     for media_item in client.media_popular
       html << "<img src='#{media_item.images.thumbnail.url}'>"
     end
