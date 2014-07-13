@@ -19,7 +19,7 @@ class VisitsController < ApplicationController
 
   def destroy
     @visit = Visit.find(params[:id])
-    @visit.count = @visit.count - 1
+    @visit.count = @visit.count - 1 if @visit.count > 0
     @visit.save!
 
     redirect_to @city, notice: "You've uncounted your visit."
