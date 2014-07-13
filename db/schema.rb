@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140713144138) do
 
   create_table "images", force: true do |t|
     t.integer  "city_id"
-    t.string   "image",      default: [], array: true
+    t.text     "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140713144138) do
 
   create_table "tweets", force: true do |t|
     t.integer  "city_id"
-    t.string   "tweet",      default: [], array: true
+    t.text     "tweet",      default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

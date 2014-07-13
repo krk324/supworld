@@ -26,7 +26,7 @@ class CitiesController < ApplicationController
     @city = City.find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
 
-    #Store wiki url only if wiki_url column is blank.
+    # Store wiki url only if wiki_url column is blank.
     if @city.wiki_url.blank?
       @wiki_url = Population.wiki_url(@city.city)
       @city.save!
@@ -34,6 +34,7 @@ class CitiesController < ApplicationController
       @wiki_url = @city.wiki_url
     end
 
+    # Use api only when population information is more than a year ago.
     if @city.population.blank? || @city.updated_at.utc + 1.years < Time.now.utc
       @country_population = Population.country_population(@city.city)
       @city.population = @country_population
@@ -43,7 +44,7 @@ class CitiesController < ApplicationController
     end
 
     # Create new tweets object only if city_id exists
-    # Store new tweets to the database if tweets were stored 30 minutes.
+    # Store new tweets to the database if tweets were stored 30 minutes ago.
     # else display tweets in the database.
     tweets = @city.tweets.find_or_create_by(city_id: @city.id)
     if tweets.tweet.blank? || @city.tweets.first.updated_at.utc + 30.minutes < Time.now.utc
@@ -54,7 +55,17 @@ class CitiesController < ApplicationController
       @trending_topics = @city.tweets.first.tweet
     end
 
-    @images = Insta.images(@city.latitude,@city.longitude)
+    # Same logic as fetching tweets.
+    # Store new images to the database if images were stored 10 minutes ago.
+    images = @city.images.find_or_create_by(city_id: @city.id)
+    if images.image.blank? || @city.images.first.updated_at.utc + 10.minutes < Time.now.utc
+      @new_images = Insta.images(@city.latitude,@city.longitude)
+      images.image = @new_images
+      images.save!
+    else
+      @new_images = @city.images.first.image
+    end
+
   end
 
   def search_params
