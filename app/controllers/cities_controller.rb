@@ -29,6 +29,8 @@ class CitiesController < ApplicationController
     @country_population = Population.country_population(@city.city)
     @wiki_url = Population.wiki_url(@city.city)
 
+    # Store new tweets to the database if tweets were stored 30 minutes ago.
+    # else display tweets in the database.
     if @city.tweets.blank? || @city.updated_at.utc + 30.minutes < Time.now.utc
       @trending_topics = Twit.trending_topics(@city.latitude,@city.longitude)
       @city.tweets = @trending_topics
