@@ -25,16 +25,18 @@ class CitiesController < ApplicationController
     # show_html only can get info with in this method.
     @city = City.find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
-
-    @country_population = Population.country_population(@city.city)
     @wiki_url = Population.wiki_url(@city.city)
 
-    if @city.tweets.blank? || @city.updated_at.utc + 30.minutes < Time.now.utc
+    # Create new tweets object only if city_id exists
+    # Store new tweets to the database if tweets were stored 30 minutes.
+    # else display tweets in the database.
+    tweets = @city.tweets.find_or_create_by(city_id: @city.id)
+    if tweets.tweet.blank? || @city.tweets.first.updated_at.utc + 30.minutes < Time.now.utc
       @trending_topics = Twit.trending_topics(@city.latitude,@city.longitude)
-      @city.tweets = @trending_topics
-      @city.save!
+      tweets.tweet = @trending_topics
+      tweets.save!
     else
-      @trending_topics = @city.tweets
+      @trending_topics = @city.tweets.first.tweet
     end
 
     @images = Insta.images(@city.latitude,@city.longitude)
