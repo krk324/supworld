@@ -34,6 +34,14 @@ class CitiesController < ApplicationController
       @wiki_url = @city.wiki_url
     end
 
+    if @city.population.blank? || @city.updated_at.utc + 1.years < Time.now.utc
+      @country_population = Population.country_population(@city.city)
+      @city.population = @country_population
+      @city.save!
+    else
+      @country_population = @city.population
+    end
+
     # Create new tweets object only if city_id exists
     # Store new tweets to the database if tweets were stored 30 minutes.
     # else display tweets in the database.
