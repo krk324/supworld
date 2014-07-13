@@ -27,6 +27,7 @@ class CitiesController < ApplicationController
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
 
     @country_population = Population.country_population(@city.city)
+    @wiki_url = Population.wiki_url(@city.city)
 
     if @city.tweets.blank? || @city.updated_at.utc + 30.minutes < Time.now.utc
       @trending_topics = Twit.trending_topics(@city.latitude,@city.longitude)

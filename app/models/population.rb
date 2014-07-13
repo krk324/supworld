@@ -10,4 +10,8 @@ class Population
     # find country_code by latitude and longitude
     GeoNamesAPI::TimeZone.find(latitude,longitude).time
   end
+
+  def self.wiki_url(city_name)
+    "http://en.wikipedia.org/wiki/" + city_name
+  end
 end
