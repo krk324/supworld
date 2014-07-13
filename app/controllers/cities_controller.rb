@@ -25,7 +25,14 @@ class CitiesController < ApplicationController
     # show_html only can get info with in this method.
     @city = City.find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
-    @wiki_url = Population.wiki_url(@city.city)
+
+    #Store wiki url only if wiki_url column is blank.
+    if @city.wiki_url.blank?
+      @wiki_url = Population.wiki_url(@city.city)
+      @city.save!
+    else
+      @wiki_url = @city.wiki_url
+    end
 
     # Create new tweets object only if city_id exists
     # Store new tweets to the database if tweets were stored 30 minutes.
