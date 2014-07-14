@@ -8,7 +8,7 @@ class City < ActiveRecord::Base
       obj.country = geo.country
     end
   end
-  before_validation :geocode, :if => :city_changed?
+  before_validation :geocode#, :if => :city_changed?
   #reverse_geocoded_by :latitude, :longitude => :address
 
   validates :city, presence: true, uniqueness: true #,format: { with: /\A^([a-zA-Z]+\s)*[a-zA-Z]+$\z/, message: "only allows letters" }
