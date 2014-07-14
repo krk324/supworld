@@ -1,11 +1,11 @@
 class CitiesController < ApplicationController
 
   def create
-    city_object = Geocoder.search(search_params[:city])
+    city_object = Geocoder.search(search_params[:city]).first
     if params[:city].present? && city_object.present?
       # Geocoder search for city name that exists and return it as object.
       # Object has many attributes such as country_name, city_name, and coordinates.
-      city_name = city_object.first.city || city_object.first.state || city_object.first.country
+      city_name = city_object.city || city_object.state || city_object.country
       @city = City.new(city: city_name)
 
       if City.where(city: city_name).empty?
