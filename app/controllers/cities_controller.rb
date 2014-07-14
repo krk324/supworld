@@ -2,7 +2,8 @@ class CitiesController < ApplicationController
 
   def create
     if params[:city].present? && Geocoder.search(search_params[:city]).present?
-      # Geocoder corret misspelled city name automatically.
+      # Geocoder search for city name that exists and return it as object.
+      # Object has many attributes such as country_name, city_name, and coordinates.
       city_name = Geocoder.search(search_params[:city])[0].city || Geocoder.search(search_params[:city])[0].state || Geocoder.search(search_params[:city])[0].country
       @city = City.new(city: city_name)
 
@@ -40,7 +41,7 @@ class CitiesController < ApplicationController
       @country_population = @city.population
     end
 
-    # If exist get existing tweets from database. Else create new tweet object.
+    # If object exist get existing tweets from database. Else create new tweet object.
     # Store new tweets to the database if tweets were stored 30 minutes ago.
     # else display tweets in the database.
     tweets = @city.tweets.find_or_create_by(city_id: @city.id)
