@@ -40,7 +40,10 @@ class Flickr
   def self.get_random_city_images(city_name)
     tag_name = city_name + ' city view'
     image = Flickr.get_flickr_images(tag_name).sample
-    image.original_url ||
+    if image.blank?
+      'http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg'
+    end
+    image.original_url
   end
 
 end
