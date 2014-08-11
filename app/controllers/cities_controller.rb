@@ -21,7 +21,8 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @city = City.find(params[:id])
+    #pre-load tweets when finding city by id
+    @city = City.includes(:tweets).find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
     @current_user_visits = current_user.visits.where(city_id: @city.id)
 
