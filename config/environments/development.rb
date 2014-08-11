@@ -37,4 +37,9 @@ Rails.application.configure do
 
   # Set user name to GeoNamesAPI
   GeoNamesAPI.username = ENV['USER_NAME']
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+  end
 end
