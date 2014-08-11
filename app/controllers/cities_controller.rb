@@ -23,6 +23,7 @@ class CitiesController < ApplicationController
   def show
     @city = City.find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
+    @current_user_visits = current_user.visits.where(city_id: @city.id)
 
     # Store wiki url only if wiki_url column is blank.
     if @city.wiki_url.blank?

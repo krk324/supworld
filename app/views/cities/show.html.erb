@@ -16,12 +16,12 @@
 
     <div class="row">
      <div class="col-md-12" id= "heading2">
-        <% if user_signed_in? && current_user.visits.where(city_id: @city.id).present?%>
-          Been here <%=current_user.visits.where(city_id: @city.id).first.count%> time(s)
+        <% if user_signed_in? && @current_user_visits.present?%>
+          Been here <%=@current_user_visits.first.count%> time(s)
           <%= link_to city_visits_path(@city), method: :post do%>
             <span class="glyphicon glyphicon-send"></span> :
           <% end %>
-          <%= link_to 'Uncount', city_visit_path(@city,current_user.visits.where(city_id: @city.id).first), method: :delete%>
+          <%= link_to 'Uncount', city_visit_path(@city,@current_user_visits.first), method: :delete%>
         <% else %>
           You've never traveled to <%=@city.city%><br>
           Have been here? <%= link_to city_visits_path(@city), method: :post do%>

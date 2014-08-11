@@ -42,6 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
   gem 'rack-mini-profiler'
+  gem 'bullet'
 end
 
 group :test do
