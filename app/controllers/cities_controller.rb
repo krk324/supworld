@@ -24,7 +24,9 @@ class CitiesController < ApplicationController
     #pre-load tweets when finding city by id
     @city = City.includes(:tweets).find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
-    @current_user_visits = current_user.visits.where(city_id: @city.id)
+    if current_user
+      @current_user_visits = current_user.visits.where(city_id: @city.id)
+    end
 
     # Store wiki url only if wiki_url column is blank.
     if @city.wiki_url.blank?

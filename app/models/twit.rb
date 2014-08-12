@@ -9,15 +9,18 @@ class Twit
   end
 
   def self.trending_topics(latitude,longitude)
-    begin
-      client = Twit.new.client
 
-      woeid = client.trends_closest(lat: latitude, long: longitude)[0].id
+    Rails.cache.fetch([self, 'trending_topics'], expires_in: 5.minutes) do
+      begin
+        client = Twit.new.client
 
-      #return top 10 trending topics of that country
-      client.trends(woeid).attrs[:trends].map {|obj| obj[:name]}
-    rescue StandardError => e
-      'Try again in 15 minutes to see the twitter trends.'
+        woeid = client.trends_closest(lat: latitude, long: longitude)[0].id
+
+        #return top 10 trending topics of that country
+        client.trends(woeid).attrs[:trends].map {|obj| obj[:name]}
+      rescue StandardError => e
+        'Try again in 15 minutes to see the twitter trends.'
+      end
     end
   end
 end
