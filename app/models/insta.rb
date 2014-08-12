@@ -10,12 +10,14 @@ class Insta
   end
 
   def self.popular_images
-    client = Instagram.client(access_token: ENV['INSTA_TOKEN'])
-    html = ""
-    for media_item in client.media_popular
-      html << "<img src='#{media_item.images.thumbnail.url}'>"
+    Rails.cache.fetch([self,'popular_images'], expires_in: 3.minutes) do
+      client = Instagram.client(access_token: ENV['INSTA_TOKEN'])
+      html = ""
+      for media_item in client.media_popular
+        html << "<img src='#{media_item.images.thumbnail.url}'>"
+      end
+      html
     end
-    html
   end
 
 
