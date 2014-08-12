@@ -69,6 +69,8 @@ class CitiesController < ApplicationController
       @new_images = @city.images.first.image
     end
 
+    @background_image = Flickr.get_random_city_images(@city.city)
+
   end
 
   def search_params
