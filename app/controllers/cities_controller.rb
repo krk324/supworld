@@ -24,13 +24,14 @@ class CitiesController < ApplicationController
     #pre-load tweets when finding city by id
     @city = City.includes(:tweets).find(params[:id])
     @time_zone = Population.time_zone(@city.latitude,@city.longitude)
+    @city_name = @city.city
     if current_user
       @current_user_visits = current_user.visits.where(city_id: @city.id)
     end
 
     # Store wiki url only if wiki_url column is blank.
     if @city.wiki_url.blank?
-      @wiki_url = Population.wiki_url(@city.city)
+      @wiki_url = Population.wiki_url(@city_name)
       @city.wiki_url = @wiki_url
       @city.save!
     else
@@ -39,7 +40,7 @@ class CitiesController < ApplicationController
 
     # Use api only when population information is more than a year ago.
     if @city.population.blank? || @city.updated_at.utc + 1.years < Time.now.utc
-      @country_population = Population.country_population(@city.city)
+      @country_population = Population.country_population(@city_name)
       @city.population = @country_population
       @city.save!
     else
@@ -69,7 +70,7 @@ class CitiesController < ApplicationController
       @new_images = @city.images.first.image
     end
 
-    @background_image = Flickr.get_random_city_images(@city.city)
+    @background_image = Flickr.get_random_city_images(@city_name)
 
   end
 
